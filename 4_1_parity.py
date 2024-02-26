@@ -54,7 +54,25 @@ print(f"Parity of 2 / {bin(2)} = { two_parity }")
 print(f"Parity of 1 / {bin(1)} = { one_parity }") 
 print(f"Parity of 0 / {bin(0)} = { zero_parity }") 
 
-three_1s = int('111', 2)
-two_1s = int('110', 2)
-print(f"three_1s = {three_1s}")
-print(f"two_1s = {two_1s}")
+int_111 = int('111', 2)
+int_110 = int('110', 2)
+print(f"int_111 = {int_111}")
+print(f"int_110 = {int_110}")
+
+print("#####################################################################################")
+
+def parity_bitfiddletrick(input_value: int) -> int:
+    result=0
+    counter = 1
+    while input_value:
+        print(f"\n\n######################## \n ITERATION # {counter}\
+        \n########################\n")
+        result ^= 1
+        print(f"input_value before modify = {input_value} / {bin(input_value)}")
+        input_value &= input_value - 1   # Drops lowest set bit of input_value.
+        print(f"input_value after modify = {input_value} / {bin(input_value)}")
+        counter+=1
+    return result 
+
+seven_parity =  parity_bitfiddletrick(7)
+print(f"Parity of 7 / {bin(7)} = { seven_parity }") 

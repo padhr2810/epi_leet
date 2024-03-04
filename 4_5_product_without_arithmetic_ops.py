@@ -27,9 +27,9 @@ def multiply(x: int, y: int) -> int:
 
 x1_5 = multiply(1, 5)
 x2_5 = multiply(2, 5)
-x11_123 = multiply(11, 123)
-x_minus10_12 = multiply(-10, 12)
+x11_10 = multiply(11, 10)
+x_minus1_2 = multiply(-1, 2)
 print(f"1 x 5 = {x1_5}")
 print(f"2 x 5 = {x2_5}")
-print(f"11 x 123 = {x11_123}")
-print(f"-10 x 12 = {x_minus10_12}")
+print(f"11 x 10 = {x11_10}")
+print(f"-1 x 2 = {x_minus1_2}")

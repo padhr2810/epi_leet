@@ -1,12 +1,13 @@
 
-def add(a,b):
+def add(a,b):       ### ONLY 2 LINES IN WHILE.
     print(f"\n###################################################\nADDITION OF {a} AND {b}\n###################################################\n")
     print(f"{bin(a)} ... {bin(b)}")
     iter = 1
-    while b:
+    while b:        ### I.E. UNTIL GET RID OF CARRY.
         print(f"\n###################################################\niter no. {iter}\n###################################################")
-        carry = a&b
         
+        carry = a&b
+
         print(f"\ncarry = {bin(carry)} ... i.e. a&b")
         print(f"a^b = {a^b}")
         print(f"carry << 1 = {bin(carry << 1)}")

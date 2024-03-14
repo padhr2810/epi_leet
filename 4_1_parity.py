@@ -30,6 +30,19 @@ def parity_brute_force(input_value: int) -> int:
 
     return result 
 
+def trick(x): # Drop from last 1 to the end.
+    print(f"\ninput value bin = {bin(x)} ... input value MINUS 1 bin = {bin(x-1)}")
+    x &= x-1
+    print(f"Revised value = {bin(x)}")
+    return
+    
+print("\n\n#####\nTrick for 9:")
+print(f"{trick(9)}")
+print(f"\n\n#####\nTrick for 10:")
+print(f"{trick(10)}")
+print(f"\n\n#####\nTrick for 8:")
+print(f"{trick(8)}")
+exit()
 
 
 print(f"Parity of 21 = { parity_brute_force(21) }") 
@@ -61,6 +74,9 @@ print(f"int_110 = {int_110}")
 
 print("#####################################################################################")
 
+
+
+
 def parity_bitfiddletrick(input_value: int) -> int:
     result=0
     counter = 1
@@ -70,6 +86,7 @@ def parity_bitfiddletrick(input_value: int) -> int:
         result ^= 1
         print(f"input_value before modify = {input_value} / {bin(input_value)}")
         input_value &= input_value - 1   # Drops lowest set bit of input_value.
+        print(f"\ninput value bin = {bin(input_value)} ... input value MINUS 1 bin = {bin(input_value-1)}") 
         print(f"input_value after modify = {input_value} / {bin(input_value)}")
         counter+=1
     return result 

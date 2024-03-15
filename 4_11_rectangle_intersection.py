@@ -7,6 +7,14 @@ Rect = collections.namedtuple('Rect', ('x', 'y', 'width', 'height'))
 
 def intersect_rectangle(r1: Rect, r2: Rect) -> Rect:
     def is_intersect(r1, r2):
+        print(f"r1.x = {r1.x}")
+        print(f"r2.x = {r2.x}")
+        print(f"r2.width = {r2.width}")
+        print(f"r1.x = {r1.x}")
+        print(f"r1.width = {r1.width}")
+        
+        print(f"r1 = {r1}")
+        print(f"r2 = {r2}")
         return (r1.x <= r2.x + r2.width and r1.x + r1.width >= r2.x
                 and r1.y <= r2.y + r2.height and r1.y + r1.height >= r2.y)
 
@@ -30,6 +38,8 @@ def res_printer(prop, value):
     else:
         return value
 
-
+r1 = Rect(0.1, 1.4, 2, 3)
+r2 = Rect(0.6, 1.5, 2, 3)
+print(f"result = {intersect_rectangle(r1, r2)}")
 
 

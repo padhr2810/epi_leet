@@ -21,19 +21,4 @@ def uniform_random(lower_bound: int, upper_bound: int) -> int:
     return result + lower_bound
 
 
-@enable_executor_hook
-def uniform_random_wrapper(executor, lower_bound, upper_bound):
-    def uniform_random_runner(executor, lower_bound, upper_bound):
-        result = executor.run(
-            lambda:
-            [uniform_random(lower_bound, upper_bound) for _ in range(100000)])
-
-        return check_sequence_is_uniformly_random(
-            [a - lower_bound for a in result], upper_bound - lower_bound + 1,
-            0.01)
-
-    run_func_with_retries(
-        functools.partial(uniform_random_runner, executor, lower_bound,
-                          upper_bound))
-
-
+print(uniform_random(0,5))

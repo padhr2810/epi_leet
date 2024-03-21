@@ -19,3 +19,12 @@ class Solution(object):
                 result+=word2[j]
                 j+=1
         return "".join(result)
+
+
+soln = Solution()
+x = soln.mergeAlternately("ACE", "BDF")
+print(x)
+x = soln.mergeAlternately("ACE", "BDFGHI")
+print(x)
+x = soln.mergeAlternately("1356", "24")
+print(x)

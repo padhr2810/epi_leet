@@ -17,7 +17,7 @@ class Solution(object):
             if isDivisor(l):
                 return str1[:l]
         return ""
-
+        
 soln = Solution()
 x = soln.gcdOfStrings("ABABAB", "ABAB")
 print(x)

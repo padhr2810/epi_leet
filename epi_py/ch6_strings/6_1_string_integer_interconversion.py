@@ -1,3 +1,4 @@
+
 import functools
 import string
 
@@ -9,11 +10,31 @@ def int_to_string(x: int) -> str:
 
     print(f"\n\n\n\n\n#################################################################################")
     print(f"New input = {x}")
+    # TODO - you fill in here.
+    if x == 0:
+        return "0"
+    if x < 0:
+        x = -x 
+        neg = True 
+    else:
+        neg = False 
+        
+    res = ""
+    while x:
+        i = x % 10
+        res += chr(i + ord("0"))
+        x //= 10
+        
 
+    res = "".join(reversed(res))
+    if neg:
+        res = "-" + res 
+        
+    """
+    BOOK APPROACH:
     is_negative = False
     if x < 0:
         x, is_negative = -x, True
-
     s = []
     while True:
         s.append(chr(ord('0') + x % 10))
@@ -27,18 +48,44 @@ def int_to_string(x: int) -> str:
         x //= 10
         if x == 0:
             break
-
     # Adds the negative sign back if is_negative
     print(f"\n#####\nresult before reversal = {s}")
     return ('-' if is_negative else '') + ''.join(reversed(s))
+    """
+    return res
 
 
 def string_to_int(s: str) -> int:
     print(f"\n\n\n\n\n#################################################################################")
     print("Args for reduce(func, seq) ..... applies a particular function (first arg) to all of the list elements in the sequence (2nd arg)")
-    return (-1 if s[0] == '-' else 1) * functools.reduce(
-        lambda running_sum, c: running_sum * 10 + string.digits.index(c),
-        s[s[0] in '-+':], 0)
+    
+    if s == "0":
+        return 0
+    if s[0] == "-":
+        neg = True 
+        s = s[1:]
+    elif s[0] == "+": 
+        neg = False
+        s = s[1:]
+    else: 
+        neg = False 
+
+    print(f"Input = {s}")
+    print(f"ord('0') = {ord('0')}")
+    res = 0
+    for ch in s:
+        res *= 10
+        print(f"char = {ch}; Unicode int for ch = {ord(ch)}")
+        res += (ord(ch) - ord("0"))
+    if neg: 
+        res = -res 
+    
+    # BOOK APPROACH:
+    #return (-1 if s[0] == '-' else 1) * functools.reduce(
+    #    lambda running_sum, c: running_sum * 10 + string.digits.index(c),
+    #    s[s[0] in '-+':], 0)
+    
+    return res 
 
 
 #def wrapper(x, s):

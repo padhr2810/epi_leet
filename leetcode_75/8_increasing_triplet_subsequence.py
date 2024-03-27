@@ -37,3 +37,13 @@ class Solution(object):
                 mid = num
         return False
     
+soln = Solution()
+assert soln.increasingTriplet(nums = [1,2,3,4,5]) == True
+# Explanation: Any triplet where i < j < k is valid.
+
+assert soln.increasingTriplet(nums = [5,4,3,2,1]) == False 
+# Explanation: No triplet exists.
+
+assert soln.increasingTriplet(nums = [2,1,5,0,4,6]) == True  
+# Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 < nums[5] == 6.
+

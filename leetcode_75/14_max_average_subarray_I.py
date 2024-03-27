@@ -1,16 +1,8 @@
 
 """
 You are given an integer array nums consisting of n elements, and an integer k.
-Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
-
-Example 1:
-Input: nums = [1,12,-5,-6,50,3], k = 4
-Output: 12.75000
-Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
-Example 2:
-
-Input: nums = [5], k = 1
-Output: 5.00000
+Find a CONTIGUOUS subarray whose length is equal to k that has the MAXIMUM average value and return this value. 
+Any answer with a calculation error less than 10-5 will be accepted.
 """
 
 class Solution(object):
@@ -20,12 +12,16 @@ class Solution(object):
         :type k: int
         :rtype: float
         """
-        wSum = float(sum(nums[:k]))
-        mSum = float(wSum / k)
+        latest_sum  = float(sum(nums[:k]))
+        max_mean    = float(latest_sum / k)     ## init the result.
 
-        for i in range(k, len(nums)):
-            wSum = wSum - nums[i - k] + nums[i]
-            mSum = max(wSum / k, mSum)
+        for i in range(k, len(nums)):        ## contiguous subarray = can't terminate before 'k' obviously.
+            latest_sum    =    latest_sum - nums[i - k] + nums[i]       ## no need to add all up obviously.
+            max_mean = max(latest_sum / k, max_mean)
 
-        return mSum
-        
+        return max_mean
+soln = Solution()
+assert  soln.findMaxAverage(nums = [1,12,-5,-6,50,3], k = 4) == 12.75000
+# Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+
+assert  soln.findMaxAverage(nums = [5], k = 1) == 5.00000

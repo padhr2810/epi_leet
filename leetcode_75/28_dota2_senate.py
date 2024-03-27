@@ -11,27 +11,9 @@ Given a string senate representing each senator's party belonging. The character
 The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
 
 Suppose every senator is smart enough and will play the best strategy for his own party. Predict which party will finally announce the victory and change the Dota2 game. The output should be "Radiant" or "Dire".
-
- 
-
-Example 1:
-
-Input: senate = "RD"
-Output: "Radiant"
-Explanation: 
-The first senator comes from Radiant and he can just ban the next senator's right in round 1. 
-And the second senator can't exercise any rights anymore since his right has been banned. 
-And in round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.
-Example 2:
-
-Input: senate = "RDD"
-Output: "Dire"
-Explanation: 
-The first senator comes from Radiant and he can just ban the next senator's right in round 1. 
-And the second senator can't exercise any rights anymore since his right has been banned. 
-And the third senator comes from Dire and he can ban the first senator's right in round 1. 
-And in round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.
 """
+
+from collections import deque 
 
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
@@ -51,5 +33,15 @@ class Solution:
             qr.popleft()
             qd.popleft()
         return "Radiant" if qr else "Dire"
-        
-        
+soln = Solution()
+assert soln.predictPartyVictory(senate = "RD") == "Radiant"
+# Explanation: 
+# The first senator comes from Radiant and he can just ban the next senator's right in round 1. 
+# And the second senator can't exercise any rights anymore since his right has been banned. 
+# And in round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.
+
+assert soln.predictPartyVictory(senate = "RDD") == "Dire"
+# The first senator comes from Radiant and he can just ban the next senator's right in round 1. 
+# And the second senator can't exercise any rights anymore since his right has been banned. 
+# And the third senator comes from Dire and he can ban the first senator's right in round 1. 
+# And in round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.

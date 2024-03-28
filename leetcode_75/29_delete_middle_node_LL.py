@@ -35,4 +35,18 @@ For n = 2, node 1 with value 1 is the middle node, which is marked in red.
 Node 0 with value 2 is the only node remaining after removing node 1.
 """
 
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(next=head)
+        slow, fast = dummy, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        slow.next = slow.next.next
+        return dummy.next
+        

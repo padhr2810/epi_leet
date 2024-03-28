@@ -22,3 +22,25 @@ Example 2:
 Input: head = [2,1,3,5,6,4,7]
 Output: [2,3,6,7,1,5,4]
 """
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None:
+            return None
+        a = head
+        b = c = head.next
+        while b and b.next:
+            a.next = b.next
+            a = a.next
+            b.next = a.next
+            b = b.next
+        a.next = c
+        return head
+        
+        

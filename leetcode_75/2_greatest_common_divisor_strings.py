@@ -15,7 +15,8 @@ class Solution(object):
         :rtype: str
         """
         
-        ### TRICK: LOOP FROM SMALLEST str DOWN TO ZERO.
+        ### TRICK: FUNCTION TO CHECK EACH SUBLEN.
+        ###        LOOP FROM SMALLEST str DOWN TO ZERO - CALLING THE FUNC EACH TIME.
         ###        COMMON DIVISOR -- IMPLIES BOTH STR START WITH SAME CHAR (OTHERWISE FAIL).
         ###        MULTIPLY PART OF str1 AND CHECK IF == str1 AND str2. DON'T MULTIPLY ANY PART OF "str2"
         

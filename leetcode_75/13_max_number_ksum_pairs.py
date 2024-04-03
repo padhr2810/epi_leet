@@ -23,6 +23,8 @@ class Solution:
         
 soln = Solution() 
 assert  soln.maxOperations(nums=[1,2,3,4], k=5) == 2
+assert  soln.maxOperations(nums=[4,1,2,3], k=5) == 2
+assert  soln.maxOperations(nums=[1,3,4,2], k=5) == 2
 # Explanation: Starting with nums = [1,2,3,4]:
 # - Remove numbers 1 and 4, then nums = [2,3]
 # - Remove numbers 2 and 3, then nums = []

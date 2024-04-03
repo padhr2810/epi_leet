@@ -1,14 +1,14 @@
 
 """
-Given a binary array nums and an integer k, return the maximum number of 
-consecutive 1's in the array if you can flip at most k 0's.
+Given a binary array "nums" and an integer "flips_allowed" , return the maximum number of 
+consecutive 1's in the array if you can flip at most 'flips_allowed' 0's.
 """
 
 class Solution(object):
-    def longestOnes(self, nums, k):
+    def longestOnes(self, nums, flips_allowed):
         """
         :type nums: List[int]
-        :type k: int
+        :type flips_allowed: int
         :rtype: int
         """
         ans = 0
@@ -18,7 +18,7 @@ class Solution(object):
             if v == 0:
                 count_flips += 1
             
-            while count_flips > k:  ##### THIS ONLY TRIGGERED WHEN NUM FLIPS EXCEEDS 'k'
+            while count_flips > flips_allowed:  ##### THIS ONLY TRIGGERED WHEN NUM FLIPS EXCEEDS 'flips_allowed'
                 if nums[j] == 0:
                     count_flips -= 1
                 j += 1
@@ -27,11 +27,11 @@ class Solution(object):
         return ans
         
 soln = Solution()
-assert soln.longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2) == 6
+assert soln.longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], flips_allowed = 2) == 6
 # Explanation: [1,1,1,0,0,1,1,1,1,1,1]
 # Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
 
 
-assert soln.longestOnes(nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3) == 10
+assert soln.longestOnes(nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], flips_allowed = 3) == 10
 # Explanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]
 # Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.

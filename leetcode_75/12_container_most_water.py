@@ -1,3 +1,4 @@
+
 """
 You are given an integer array height of length n. 
 There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
@@ -12,6 +13,11 @@ Notice that you may not slant the container.
 
 class Solution:
     def maxArea(self, height) -> int:
+    
+        ### TRICK: 2x POINTERS AT OPPOSITE END
+        ###         AREA = (MINIMUM HEIGHT) * (HORIZONTAL DISTANCE)
+        ###    EACH STEP, ADVANCE ONLY ONE POINTER ( @ THE SMALLER VERTICAL HEIGHT)
+        
         i, j = 0, len(height) - 1
         max_area = 0
         while i < j:

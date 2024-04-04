@@ -1,35 +1,48 @@
+
 """
-Given an array of characters chars, compress it using the following algorithm:
+Given an array of characters, compress it using the following algorithm:
 
-Begin with an empty string s. For each group of consecutive repeating characters in chars:
+    --- Begin with an empty string s. For each GROUP of consecutive repeating characters in chars:
+    --- If the group's length is 1, append the character to s.
+    --- Otherwise, append the character followed by the group's length.
+    --- The compressed string s should NOT be stored separately, but instead, be STORED IN THE INPUT CHARACTER ARRAY "chars". 
+            Note that group lengths that are 10 or longer will be split into multiple characters in chars.
 
-If the group's length is 1, append the character to s.
-Otherwise, append the character followed by the group's length.
-The compressed string s should not be returned separately, but instead, be stored in the input character array chars. Note that group lengths that are 10 or longer will be split into multiple characters in chars.
+    --- After you are done modifying the input array, RETURN the new LENGTH of the array.
 
-After you are done modifying the input array, return the new length of the array.
-
-You must write an algorithm that uses only constant extra space.
+    --- You must write an algorithm that uses only constant extra space.
 """
 
 class Solution:
     def compress(self, chars) -> int:
-        i, len_output, len_input = 0, 0, len(chars)
-        while i < len_input:
-            faster_j = i + 1
-            while faster_j < len_input and chars[faster_j] == chars[i]:     ### KEEP PROGRESSING IF DUPLICATES.
+    
+        ### TRICK: USE 2 POINTERS - FAST AND SLOW 
+        ###     MAIN LOOP CHECKS IF 'SLOW' REACHED END OF ARRAY
+        ###         INTERNAL LOOP -- 1: CHECK IF "FAST" REACHED END OF ARRAY 
+        ###                      2: AND CHECKS FOR DUPLICATES - IF YES THEN KEEP PROGRESSING.
+        ###     WHEN REACH END OF HOMOGENEOUS GROUP - UPDATE THE START OF STRING WITH THE RESULT.
+        ###     COUNTING THE NUMBER HAPPENS BY COMPARISON OF INDICES. [NO NEED TO INCREMENET A COUNTER]
+        ###     LOGIC - ADD NUMBER TO ARRAY IF > 1
+        ###     AFTER ADD A RESULT --- THE "slow" CATCHES UP WITH "fast"
+        
+        i_slow, faster_j, len_output, len_input = 0, 0, 0, len(chars)
+        while i_slow < len_input:
+        
+            faster_j += 1
+            
+            while faster_j < len_input and chars[faster_j] == chars[i_slow]:     ### KEEP PROGRESSING IF DUPLICATES.
                 faster_j += 1
             
-            chars[len_output] = chars[i]    ##### THIS CAN BRING BACK A CHAR TO FIT INTO THE OUTPUT NUM.
-            len_output += 1
+            chars[len_output] = chars[i_slow]    ##### BRING BACK A CHAR TO FIT INTO THE OUTPUT NUM.
+            len_output += 1                      ##### ANOTHER STEP ALONG THE RESULT ARRAY.
             
-            if faster_j - i > 1:        ##### LOGIC - ADD NUMBER TO ARRAY?
-                cnt = str(faster_j - i)
+            if faster_j - i_slow > 1:        ##### LOGIC - ADD NUMBER TO ARRAY IF > 1
+                cnt = str(faster_j - i_slow)    #### COUNTING HAPPENS BY COMPARISON OF INDICES.
                 for c in cnt:           ##### HERE ADD THE COUNT TO THE ARRAY.
                     chars[len_output] = c
                     len_output += 1
                 
-            i = faster_j            ##### CATCHUP.
+            i_slow = faster_j            ##### CATCHUP.
         print(f"revised chars = {chars}")
         return len_output
         

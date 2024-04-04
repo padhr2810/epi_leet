@@ -8,7 +8,7 @@ Note that you must do this in-place without making a copy of the array.
 
 class Solution:
     # The Trick: EVERY time a non-zero is encountered, it gets "pushed forward"
-    #     if no zero encountered yet, the non-zero just gets swapped with itself.
+    #     if no zero encountered yet, the non-zero just gets swapped with itself at each step.
     # Every time encounter a zero, 'i' falls a step behind the 'stepper' so the zero gets swapped with non-zero.
     #     if three zeros in a row, the non-zero gets swapped with the first zero (coz 'i' falls 3 steps behind)
     def moveZeroes(self, nums ) -> None:

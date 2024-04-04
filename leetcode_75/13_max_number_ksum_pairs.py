@@ -7,6 +7,13 @@
 
 class Solution:
     def maxOperations(self, nums, k: int) -> int:
+    
+        ### TRICK: SORT ARRAY.
+        ###        THEN: USE 2x POINTERS @ LEFT / RIGHT.
+        ###         CHECK IF THE 2 POINTERS ADD TO TARGET NUMBER.
+        ###             IF YES: ADVANCE BOTH POINTERS 
+        ###             IF NO: JUST ADVANCE 1 POINTER.
+        
         nums.sort()
         left, right, result = 0, len(nums) - 1, 0
         while left < right:

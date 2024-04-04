@@ -6,24 +6,31 @@ consecutive 1's in the array if you can flip at most 'flips_allowed' 0's.
 
 class Solution(object):
     def longestOnes(self, nums, flips_allowed):
+
         """
         :type nums: List[int]
         :type flips_allowed: int
         :rtype: int
         """
-        ans = 0
-        count_flips = j = 0
         
-        for start_index, v in enumerate(nums):
-            if v == 0:
+        ### TRICK: INITIALISE 2 POINTERS - FAST & SLOW AT THE START OF ARRAY.
+        ###    MAIN LOOP SIMPLY ITERATES THROUGH 'fast_index' 
+        ###    WHEN REACH THE "count_flips" LIMIT, THE 'slow_index' ADVANCES PAST THE NEXT '0'
+    
+        ans = 0
+        count_flips = slow_index = 0
+        
+        for fast_index, val in enumerate(nums):
+        
+            if val == 0:            ### FLIP.
                 count_flips += 1
             
             while count_flips > flips_allowed:  ##### THIS ONLY TRIGGERED WHEN NUM FLIPS EXCEEDS 'flips_allowed'
-                if nums[j] == 0:
+                if nums[slow_index] == 0:                ##### B START OF SEQUENCE
                     count_flips -= 1
-                j += 1
-            print(f"\n### Iter start_index = {start_index}; .... j = {j}; .... ans = {ans}; .... start_index - j + 1 = {start_index - j + 1}")
-            ans = max(ans, start_index - j + 1)
+                slow_index += 1
+            print(f"\n### Iter fast_index = {fast_index}; .... slow_index = {slow_index}; .... ans = {ans}; .... fast_index - slow_index + 1 = {fast_index - slow_index + 1}")
+            ans = max(ans, fast_index - slow_index + 1)
         return ans
         
 soln = Solution()

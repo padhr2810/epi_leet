@@ -14,6 +14,9 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        
+        ### TRICK: sliding window - just change the first & last values.
+        
         vowels = set('aeiou')
         #vowels = 'aeiou'       ### can do it as string or set... same result.
         

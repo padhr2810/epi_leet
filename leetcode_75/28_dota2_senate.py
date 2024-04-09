@@ -1,22 +1,45 @@
 
+
 """
-In the world of Dota2, there are two parties: the Radiant and the Dire.
+In the world of Dota2, there are two political parties: the RADIANT and the DIRE.
 
-The Dota2 senate consists of senators coming from two parties. Now the Senate wants to decide on a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise one of the two rights:
+All senators are from these two parties. 
+Now the Senate wants to decide on a change in the Dota2 game. 
+The voting for this change is a round-based procedure. 
+In each round, EACH SENATOR can exercise one of the TWO RIGHTS:
 
-Ban one senator's right: A senator can make another senator lose all his rights in this and all the following rounds.
-Announce the victory: If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and decide on the change in the game.
-Given a string senate representing each senator's party belonging. The character 'R' and 'D' represent the Radiant party and the Dire party. Then if there are n senators, the size of the given string will be n.
+1- Ban one senator's right: A senator can make another senator lose all his rights in this and ALL the following ROUNDS.
+2- Announce the victory: If this senator found the senators who still have rights to vote are ALL from the same PARTY, 
+    he can announce the victory and decide on the change in the game.
 
-The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
+INPUT: Given a string senate representing each senator's party belonging. 
+    The character 'R' and 'D' represent the 2 parties.
+    if there are n senators, the size of the given string will be n.
 
-Suppose every senator is smart enough and will play the best strategy for his own party. Predict which party will finally announce the victory and change the Dota2 game. The output should be "Radiant" or "Dire".
+The round-based procedure starts from the first senator to the last senator in the given order. 
+This procedure will last until the end of voting. 
+All the senators who have lost their rights will be skipped during the procedure.
+
+Suppose every senator is smart enough and will play the best strategy for his own party. 
+Predict which party will finally announce the victory and change the Dota2 game. 
+
+OUTPUT:
+      The output should be "Radiant" or "Dire".
 """
 
 from collections import deque 
 
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
+
+        # TRICK: DEQUE - I.E. THIS HAS .popleft()
+        #        ONLY NEED 2 METHODS - ".append()" AND ".popleft()"
+        #        FIRST:
+        #           INITIALISE 2 DEQUES - QR & QD FOR THE 2 PARTIES.
+        #           PUT THE ENUMERATED COUNTER INTO THEIR RESPECTIVE QUEUES (DON'T PUT IN THE LETTERS)
+        #        THEN RUN A WHILE LOOP UNTIL ONE OF THE QUEUES IS EMPTY:
+        #           
+        
         qr = deque()
         qd = deque()
         for i, c in enumerate(senate):
@@ -26,6 +49,8 @@ class Solution:
                 qd.append(i)
         n = len(senate)
         while qr and qd:
+            print(f"qr[0] : {qr[0]} ; qd[0] : {qd[0]} ; qr[0] < qd[0] = {qr[0] < qd[0]}")
+            exit() 
             if qr[0] < qd[0]:
                 qr.append(qr[0] + n)
             else:

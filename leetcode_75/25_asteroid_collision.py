@@ -14,16 +14,30 @@ Two asteroids moving in the same direction will never meet.
 
 class Solution:
     def asteroidCollision(self, asteroids) :
+    
+        # TRICK: STACK.
+        #        RETURNED STACK SHOULD INCLUDE ONLY ASTEROIDS THAT DIDN'T EXPLODE.
+        #        IF TRAVELLING RIGHT: 
+        #                 1: APPEND TO STACK. 
+        #        IF TRAVELLING LEFT:
+        #               1: 'WHILE' LOOP TO SMASH ALL ASTEROIDS ON LEFT THAT ARE BOTH TRAVELING RIGHT AND SMALLER.
+        #               2:  'IF' STATEMENT: IF THE SAME SIZE, THEN JUST POP (THIS DESTROYS BOTH)
+        #               3:  ELIF: ONE TO THE LEFT IS TRAVELLING SAME DIRECTION (LEFT):
+        #                       THEN APPEND.
+        #                       DON'T CONSIDER ANYTHING PAST THIS ONE TO THE LEFT.
+        
+        
         stk = []
         for x in asteroids:
             if x > 0:
-                stk.append(x)
+                stk.append(x)       # APPEND IF TRAVELLING RIGHT.
             else:
-                while stk and stk[-1] > 0 and stk[-1] < -x:
+                while ( stk ) and (stk[-1] > 0) and (abs(stk[-1]) < abs(x) ):     
+                    # 'WHILE' LOOP TO SMASH ALL ASTEROIDS ON LEFT THAT ARE TRAVELING TO THE RIGHT (POSITIVE) AND SMALLER (ABS VALUE).
                     stk.pop()
-                if stk and stk[-1] == -x:
+                if (stk) and ( stk[-1] == -x ):
                     stk.pop()
-                elif not stk or stk[-1] < 0:
+                elif ( not stk ) or ( stk[-1]  < 0 ):
                     stk.append(x)
         return stk
         

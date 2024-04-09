@@ -17,6 +17,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        
+        # TRICK: INITIALISE 'LEFT_SUM" AS ZERO, AND 'RIGHT_SUM' AS SUM OF ALL VALUES
+        #           THEN SIMPLY ITERATE THROUGH ARR WITH '+=' AND '-=' UNTIL THEY'RE EQUAL.
+        
         left_sum, right_sum = 0, sum(nums)
         for i, x in enumerate(nums):
             right_sum -= x

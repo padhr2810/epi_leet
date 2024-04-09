@@ -11,9 +11,12 @@ class Solution(object):
         :type arr: List[int]
         :rtype: bool
         """
+        
+        # TRICK: USE INBUILT 'COUNTER'
+        #        THEN COMPARE LEN OF LIST VS LEN OF SET, TO CHECK IF DUPS.
+        
         cnt = Counter(arr)
         return len(set(cnt.values())) == len(cnt)
-        ##### TRICK: LEN OF SET == LEN OF THE LIST.
         
 
 soln = Solution()

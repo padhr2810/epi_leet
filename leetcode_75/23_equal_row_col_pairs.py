@@ -11,12 +11,18 @@ class Solution(object):
         :type grid: List[List[int]]
         :rtype: int
         """
+        
+        ### TRICK: BRUTE FORCE CHECK (I.E. NESTED LOOP)
+        ###         BUT USE 'all' SYNTAX FOR EFFICIENT ONE LINER INSIDE LOOP
+        
         n = len(grid)
         ans = 0
+        
         for i in range(n):
             for j in range(n):
                 ans += all(grid[i][k] == grid[k][j] for k in range(n))
         return ans
+
         
 soln = Solution()
         

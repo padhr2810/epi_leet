@@ -15,7 +15,11 @@ class Solution(object):
         :type gain: List[int]
         :rtype: int
         """
+        
+        ### TRICK: USE THE "initial=0" PARAMETER OF "accumulate" 
+        ###             OTHERWISE INITIALISES AS THE FIRST VALUE OF ARRAY, WHICH IS PROB NOT ZERO.
 
+        """
         highest = 0
         current = 0
         for g in gain:
@@ -23,7 +27,8 @@ class Solution(object):
             if current > highest:
                 highest = current
         return highest
-        ## return max(itertools.accumulate(gain, initial=0))  # MORE COMPACT CODE...
+        """
+        return max(itertools.accumulate(gain, initial=0))  # MORE COMPACT CODE...
 
 soln = Solution()
 assert soln.largestAltitude(gain = [-5,1,5,0,-7]) == 1

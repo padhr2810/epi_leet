@@ -47,17 +47,32 @@ class Solution:
                 qr.append(i)
             else:
                 qd.append(i)
+                
         n = len(senate)
+        
+        while_counter = 1 
         while qr and qd:
-            print(f"qr[0] : {qr[0]} ; qd[0] : {qd[0]} ; qr[0] < qd[0] = {qr[0] < qd[0]}")
-            exit() 
+            print("\n\n################################################################################################")
+            print(f"WHILE LOOP #{while_counter}:")
+            print("################################################################################################")
+            print(f"\nqd = {qd}")
+            print(f"qr = {qr}")
+            print(f"n = {n}")
+            print(f"qr[0] < qd[0] = {qr[0] < qd[0]}")
+            print(f"qr[0] + n = {qr[0] + n}")
+            print(f"qd[0] + n = {qd[0] + n}")
+            
             if qr[0] < qd[0]:
                 qr.append(qr[0] + n)
             else:
                 qd.append(qd[0] + n)
-            qr.popleft()
+                
+            qr.popleft()                ### POP BOTH QUEUES ON THE LEFT.
             qd.popleft()
+            
+            while_counter += 1
         return "Radiant" if qr else "Dire"
+
 soln = Solution()
 assert soln.predictPartyVictory(senate = "RD") == "Radiant"
 # Explanation: 

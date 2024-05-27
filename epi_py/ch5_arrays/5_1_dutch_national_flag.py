@@ -11,24 +11,36 @@ RED, WHITE, BLUE = range(3)
 def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
 
     pivot = A[pivot_index]
+    print(f"pivot INdex: {pivot_index}; Value: {pivot}")
     # Keep the following invariants during partitioning:
     # bottom group: A[:smaller].
     # middle group: A[smaller:equal].
     # unclassified group: A[equal:larger].
     # top group: A[larger:].
-    smaller, equal, larger = 0, 0, len(A)
+    
+    smaller, equal, larger = 0, 0, len(A)			# I.E. SMALLER = END OF THE SMALLER SECTION
+    								# I.E. EQUAL = END OF THE EQUAL SECTION
+    								# I.E. 'LARGER' = START OF THE LARGER GROUP.
+    
     # Keep iterating as long as there is an unclassified element.
-    while equal < larger:
+    while equal < larger:					
         # A[equal] is the incoming unclassified element.
         if A[equal] < pivot:
-            A[smaller], A[equal] = A[equal], A[smaller]
-            smaller, equal = smaller + 1, equal + 1
+            A[smaller], A[equal] = A[equal], A[smaller]		# SWAP SMALLER & EQUAL.
+            smaller, equal = smaller + 1, equal + 1		# INCREMENT BOTH SMALLER & EQUAL.
         elif A[equal] == pivot:
-            equal += 1
+            equal += 1						# INCREMENT ONLY SMALLER. --- IF EQUAL TO THE PIVOT.
         else:  # A[equal] > pivot.
-            larger -= 1
-            A[equal], A[larger] = A[larger], A[equal]
-
+            larger -= 1						# DECREMENT LARGER. --- IF GREATER THAN PIVOT.
+            A[equal], A[larger] = A[larger], A[equal]		# THEN SWAP 'EQUAL' AND 'LARGER'
+    print(f"bottom group = {A[:smaller]}")
+    print(f"middle group = {A[smaller: equal]}")
+    print(f"unclassified group = {A[equal: larger]}")  # TARGET - MAKE THIS GAP = ZERO.
+    print(f"top group = {A[larger:]}")
+    
+dutch_flag_partition(2, [0,1,2,1,1,1,5,5,5])
+dutch_flag_partition(3, [0,1,2,1,1,1,5,5,5])
+exit() 
 
 @enable_executor_hook
 def dutch_flag_partition_wrapper(executor, A, pivot_idx):

@@ -1,5 +1,11 @@
-"""
 
+"""
+TRICK
+1: DO A FORWARD PASS. TRACK 3 THINGS: I) max_total_profit 
+				      II) min_price_so_far [SAME AS 5_6]
+				      III) ARRAY: 'first_buy_sell_profits' -- SIMPLY STORE 'max_total_profit' FOR EACH DAY.
+2: DO A BACKWARDS PASS. TRACK 2 THINGS: I) max_price_so_far [OPPOSITE OF FORWARD PASS) 
+					II) max_total_profit ... BUT THIS TIME COMPARE VS: "max_price_so_far - price + first_buy_sell_profits[i]"
 """
 
 from typing import List
@@ -10,13 +16,15 @@ from test_framework import generic_test
 def buy_and_sell_stock_twice(prices: List[float]) -> float:
 
     max_total_profit, min_price_so_far = 0.0, float('inf')
-    first_buy_sell_profits = [0.0] * len(prices)
+    first_buy_sell_profits = [0.0] * len(prices)		# THIS LINE WAS NOT IN 5_6
+    								# I.E. NEW ARRAY - MAX PROFIT IF BUY & SELL ON OR BEFORE A GIVEN DAY.
     # Forward phase. For each day, we record maximum profit if we sell on that
     # day.
     for i, price in enumerate(prices):
         min_price_so_far = min(min_price_so_far, price)
         max_total_profit = max(max_total_profit, price - min_price_so_far)
-        first_buy_sell_profits[i] = max_total_profit
+        first_buy_sell_profits[i] = max_total_profit		# THIS LINE WAS NOT IN 5_6
+        							# TRACK THE MAX PROFIT IF BUY & SELL ON OR BEFORE A GIVEN DAY.
 
     # Backward phase. For each day, find the maximum profit if we make the
     # second buy on that day.

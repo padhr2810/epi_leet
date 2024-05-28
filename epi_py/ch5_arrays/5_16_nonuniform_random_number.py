@@ -1,3 +1,7 @@
+"""
+
+"""
+
 import bisect
 import collections
 import functools

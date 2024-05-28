@@ -1,3 +1,11 @@
+"""
+TRICK
+KEEP TRACK OF FURTHEST INDEX REACHED THUS FAR. 
+TWO POINTERS: I) 'i' (ADD FROM HERE)
+	      II) 'furthest_reach_so_far'
+IF 'i' GOES BEYOND 'furthest_reach_so_far', GAME OVER, THEN RETURN
+"""
+
 from typing import List
 
 from test_framework import generic_test

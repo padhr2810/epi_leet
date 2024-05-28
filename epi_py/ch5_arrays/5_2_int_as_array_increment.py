@@ -1,3 +1,10 @@
+"""
+TRICK: 
+STEP 1: NAIVELY +=1 TO THE LAST ELEMENT.
+STEP 2: CHECK FOR 10 ALL THE WAY FROM END TO INDEX 1 (REVERSED OBVIOUSLY)
+STEP 3: FINAL CHECK IF INDEX 0 == 10
+"""
+
 from typing import List
 
 from test_framework import generic_test

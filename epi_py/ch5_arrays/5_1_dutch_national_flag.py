@@ -1,3 +1,13 @@
+"""
+TRICK:
+3 ITERATORS FOR: I) END OF NUMS SMALLER THAN PIVOT. II) END OF NUMS EQUAL TO PIVOT. III) START OF NUMS LARGER THAN PIVOT.
+INITIALISED TO: 0, 0, LEN(ARRAY)
+ALWAYS COMPARE ARRAY[EQUAL] TO PIVOT, IN LOOP UNTIL 'LARGER' & 'EQUAL' CONVERGE THEN EXIT.
+3 POSSIBLE OUTCOMES FOR EACH ITERATION:
+I: IF SMALLER, PUSH TOWARDS FRONT. II: IF SAME SIZE, DON'T MOVE ANYWHERE. III: IF BIGGER, PUSH TO BACK.
+[IF SMALLER, INCREMENT BOTH EQUAL & SMALLER INDICES. IF EQUAL, ONLY INCREMENT EQUAL INDEX. IF LARGER, DECREMENT THE LARGER INDEX.
+"""
+
 import functools
 from typing import List
 
@@ -23,16 +33,22 @@ def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
     								# I.E. 'LARGER' = START OF THE LARGER GROUP.
     
     # Keep iterating as long as there is an unclassified element.
-    while equal < larger:					
-        # A[equal] is the incoming unclassified element.
-        if A[equal] < pivot:
-            A[smaller], A[equal] = A[equal], A[smaller]		# SWAP SMALLER & EQUAL.
+    iter=1
+    while equal < larger:			
+    								# A[equal] is the incoming unclassified element.
+        							# ALWAYS COMPARE 'A[equal]' VS 'PIVOT' ABS VALUE
+        if A[equal] < pivot:					
+            A[smaller], A[equal] = A[equal], A[smaller]		# 1: PUSH 'SMALLER' TOWARDS FRONT -- I.E. SWAP SMALLER & EQUAL.
             smaller, equal = smaller + 1, equal + 1		# INCREMENT BOTH SMALLER & EQUAL.
-        elif A[equal] == pivot:
-            equal += 1						# INCREMENT ONLY SMALLER. --- IF EQUAL TO THE PIVOT.
-        else:  # A[equal] > pivot.
+            
+        elif A[equal] == pivot:					# 2: DON'T PUSH ANYWHERE.
+            equal += 1						# INCREMENT ONLY 'equal'. --- IF EQUAL TO THE PIVOT.
+            
+        else:  # A[equal] > pivot.				# 3: PUSH 'LARGER' TO THE BACK.
             larger -= 1						# DECREMENT LARGER. --- IF GREATER THAN PIVOT.
             A[equal], A[larger] = A[larger], A[equal]		# THEN SWAP 'EQUAL' AND 'LARGER'
+        print(f"Iter # {iter}: A")
+        iter+=1 
     print(f"bottom group = {A[:smaller]}")
     print(f"middle group = {A[smaller: equal]}")
     print(f"unclassified group = {A[equal: larger]}")  # TARGET - MAKE THIS GAP = ZERO.

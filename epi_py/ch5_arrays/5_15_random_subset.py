@@ -24,8 +24,11 @@ def random_subset(n: int, k: int) -> List[int]:
         i_mapped = changed_elements.get(i, i)
         changed_elements[rand_idx] = i_mapped
         changed_elements[i] = rand_idx_mapped
+        print(f"\nIter {i}: rand_idx = {rand_idx}; rand_idx_mapped = {rand_idx_mapped}; i_mapped = {i_mapped}; changed_elements = {changed_elements}")
     return [changed_elements[i] for i in range(k)]
 
+random_subset(50,5)
+exit() 
 
 # Pythonic solution
 def random_subset_pythonic(n, k):

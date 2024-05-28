@@ -1,6 +1,7 @@
 """
 TRICK
-
+TURN THE PERMUTATION INTO A LIST FROM 0.
+THEN USE THE "random_sampling" FUNC WE DEFINED IN 5_12 PROBLEM FOR THE NEW PERMUTATION.
 """
 
 import copy
@@ -8,7 +9,7 @@ import functools
 import math
 from typing import List
 
-from offline_sampling import random_sampling
+from offline_sampling_5_12 import random_sampling
 from test_framework import generic_test
 from test_framework.random_sequence_checker import (
     check_sequence_is_uniformly_random, run_func_with_retries)
@@ -17,8 +18,8 @@ from test_framework.test_utils import enable_executor_hook
 
 def compute_random_permutation(n: int) -> List[int]:
 
-    permutation = list(range(n))
-    random_sampling(n, permutation)
+    permutation = list(range(n))	# E.G. IF n=3, THEN "permutation = [0,1,2]"
+    random_sampling(n, permutation) 	# THIS IS THE FUNC WE DEFINED BACK IN 5_12 PROBLEM.
     return permutation
 
 

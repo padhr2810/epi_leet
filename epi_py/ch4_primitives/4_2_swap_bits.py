@@ -1,4 +1,7 @@
-
+"""
+TRICK:
+IF THE 2 RESPECTIVE BITS ARE DIFFERENT, THEN USE A BIT MASK TO FLIP THEM USING ^=
+"""
 
 def swap_bits(input_value, i, j):
 

@@ -1,4 +1,8 @@
-
+"""
+TRICK:
+DON'T OVER-COMPLICATE IT. CAN JUST SET UP A LOOP FOR RANGE(64-1).
+THEN SIMPLY FLIP THE FIRST 2 SUCCESSIVE BITS THAT DIFFER - NO NEED TO WORRY ABOUT ANY OTHER BITS AT ALL.
+"""
 
 def closest_int_same_bit_count(x: int) -> int:
     num_unsigned_bits = 64

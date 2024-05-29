@@ -1,3 +1,10 @@
+"""
+TRICK
+ORD() = IMPLIES ORDINAL().
+	CONVERTS A UNICODE CHARACTER TO AN ORDINAL NUMBER. I.E. UNIQUE NUM THAT IDENTIFIES EACH CHAR IN THE VAST CATALOG OF TEXT SYMBOLS USED BY COMPUTERS.
+CHR() = OPPOSITE OF ORD(). I.E. INT TO UNICODE CHARACTER.
+ALSO NEED TO CONSIDER EDGE CASE WHERE '-' AT THE START.
+"""
 
 import functools
 import string
@@ -10,28 +17,7 @@ def int_to_string(x: int) -> str:
 
     print(f"\n\n\n\n\n#################################################################################")
     print(f"New input = {x}")
-    # TODO - you fill in here.
-    if x == 0:
-        return "0"
-    if x < 0:
-        x = -x 
-        neg = True 
-    else:
-        neg = False 
-        
-    res = ""
-    while x:
-        i = x % 10
-        res += chr(i + ord("0"))
-        x //= 10
-        
 
-    res = "".join(reversed(res))
-    if neg:
-        res = "-" + res 
-        
-    """
-    BOOK APPROACH:
     is_negative = False
     if x < 0:
         x, is_negative = -x, True
@@ -51,9 +37,6 @@ def int_to_string(x: int) -> str:
     # Adds the negative sign back if is_negative
     print(f"\n#####\nresult before reversal = {s}")
     return ('-' if is_negative else '') + ''.join(reversed(s))
-    """
-    return res
-
 
 def string_to_int(s: str) -> int:
     print(f"\n\n\n\n\n#################################################################################")
@@ -67,7 +50,7 @@ def string_to_int(s: str) -> int:
     elif s[0] == "+": 
         neg = False
         s = s[1:]
-    else: 
+    else:
         neg = False 
 
     print(f"Input = {s}")

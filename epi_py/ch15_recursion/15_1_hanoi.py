@@ -1,21 +1,36 @@
+
 import functools
 from typing import List
 
-from test_framework import generic_test
-from test_framework.test_failure import TestFailure
-from test_framework.test_utils import enable_executor_hook
+#from test_framework import generic_test
+#from test_framework.test_failure import TestFailure
+#from test_framework.test_utils import enable_executor_hook
 
 NUM_PEGS = 3
 
-
+record_of_recursion_calls= []
 def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
     def compute_tower_hanoi_steps(num_rings_to_move, from_peg, to_peg,
                                   use_peg):
         if num_rings_to_move > 0:
+            print(f"\n\n\n#####\nStarting FIRST internal call to recursion !!!!!!!!!!!!!!!!!!!!!!!!!")
+            print(f"\npegs = {pegs}")
+            print(f"\nNum rings to move = {num_rings_to_move}")
+            print(f"\nfrom_peg = {from_peg}; to_peg = {to_peg}; use_peg = {use_peg}")
+            record_of_recursion_calls.append(f"FIRST: {num_rings_to_move}")
+            
+            
             compute_tower_hanoi_steps(num_rings_to_move - 1, from_peg, use_peg,
                                       to_peg)
             pegs[to_peg].append(pegs[from_peg].pop())
             result.append([from_peg, to_peg])
+            
+            print(f"\n\n\n#####\n#####\n#####\nStarting SECOND internal call to recursion")
+            print(f"\npegs = {pegs}")
+            print(f"\nNum rings to move = {num_rings_to_move}")
+            print(f"\nfrom_peg = {from_peg}; to_peg = {to_peg}; use_peg = {use_peg}")
+            record_of_recursion_calls.append(f"SECOND: {num_rings_to_move}")
+
             compute_tower_hanoi_steps(num_rings_to_move - 1, use_peg, to_peg,
                                       from_peg)
 
@@ -24,9 +39,15 @@ def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
     pegs = [list(reversed(range(1, num_rings + 1)))
             ] + [[] for _ in range(1, NUM_PEGS)]
     compute_tower_hanoi_steps(num_rings, 0, 1, 2)
+    print(f"\nNumber of recursion calls = {record_of_recursion_calls}")
+    print(f"\nresult = {result}")
     return result
 
 
+if __name__ == "__main__":
+    compute_tower_hanoi(3)
+
+exit()
 @enable_executor_hook
 def compute_tower_hanoi_wrapper(executor, num_rings):
     pegs = [list(reversed(range(1, num_rings + 1)))

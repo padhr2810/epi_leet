@@ -33,16 +33,17 @@ def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
             #print(f"\n\n\n#####\nStarting FIRST internal call to recursion !!!!!!!!!!!!!!!!!!!!!!!!!")
             #print(f"\npegs = {pegs}")
             #print(f"\nNum rings to move = {num_rings_to_move}")
-            record_of_recursion_calls.append(f"FIRST: num_rings_to_move = {num_rings_to_move}; pegs = {pegs};  Peg order in func = from_peg={from_peg}; to_peg={use_peg}; use_peg={to_peg}; RESULT = {result}")
+            record_of_recursion_calls.append(f"FIRST: num_rings_to_move before FIRST func call= {num_rings_to_move}; pegs = {pegs};  Peg order in func = from_peg={from_peg}; to_peg={use_peg}; use_peg={to_peg}; RESULT = {result}")
             
             compute_tower_hanoi_steps(num_rings_to_move - 1, from_peg, use_peg,
                                       to_peg)
             #### MOVE OCCURS HERE!!!
             pegs[to_peg].append(pegs[from_peg].pop())
             result.append([from_peg, to_peg])
+            record_of_recursion_calls.append(f"   *** WHEN MAKE THE MOVE -- from_peg={from_peg}; to_peg={to_peg}")
             
             print(f"\n\n\n#####\n#####\n#####\nStarting SECOND internal call to recursion")
-            record_of_recursion_calls.append(f"SECOND: num_rings_to_move = {num_rings_to_move}; pegs = {pegs};  Peg order in func = from_peg={use_peg}; to_peg={to_peg}; use_peg{from_peg}; RESULT = {result}")
+            record_of_recursion_calls.append(f"SECOND: num_rings_to_move before SECOND = {num_rings_to_move}; pegs = {pegs};  Peg order in func = from_peg={use_peg}; to_peg={to_peg}; use_peg{from_peg}; RESULT = {result}")
             SECOND_FUNC_COUNTER+= 1
             print(f"SECOND_FUNC_COUNTER = {SECOND_FUNC_COUNTER}")
 
@@ -69,7 +70,7 @@ def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
 
 
 if __name__ == "__main__":
-    compute_tower_hanoi(1)
+    compute_tower_hanoi(2)
 
 exit()
 @enable_executor_hook

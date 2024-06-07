@@ -1,3 +1,10 @@
+"""
+TRICK: ONLY REACHES THE SECOND CALL OF HELPER FUNCTION IF "num_rings_to_move == 0" ... I.E.SKIPS THE MAIN BLOCKOF CODE ENTIRELY.
+    BECAUSE IT'S ENCLOSED IN RECURSIVE FUNCS, WHEN REVERT TO OUTER FUNC, IT REVERTS TO LARGER NUMBER AGAIN.
+INPUT TO HELPER FUNC = "from_peg, to_peg, use_peg" 
+    ...BUT IN FIRST RECURSION IT'S "from_peg, use_peg, to_peg" ...I.E.JUST 2ND & 3RD CHANGE.
+    ...BUT IN SECOND RECURSION IT'S "use_peg, to_peg, from_peg" ... I.E. FIRST ONE CHANGES.
+"""
 
 import functools
 from typing import List
@@ -10,46 +17,59 @@ import pprint
 
 NUM_PEGS = 3
 
+IF_ZERO_TRUE_COUNTER = 0 
+SECOND_FUNC_COUNTER  = 0
+
 record_of_recursion_calls= []
 
 def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
     def compute_tower_hanoi_steps(num_rings_to_move, from_peg, to_peg,
                                   use_peg):
                                   
+        global IF_ZERO_TRUE_COUNTER 
+        global SECOND_FUNC_COUNTER
         if num_rings_to_move > 0:
-            print(f"\n\n\n#####\nStarting FIRST internal call to recursion !!!!!!!!!!!!!!!!!!!!!!!!!")
-            print(f"\npegs = {pegs}")
-            print(f"\nNum rings to move = {num_rings_to_move}")
-            record_of_recursion_calls.append(f"FIRST: {num_rings_to_move}; pegs = {pegs};  Peg order in func = {from_peg}; {use_peg}; {to_peg}")
-            
+    
+            #print(f"\n\n\n#####\nStarting FIRST internal call to recursion !!!!!!!!!!!!!!!!!!!!!!!!!")
+            #print(f"\npegs = {pegs}")
+            #print(f"\nNum rings to move = {num_rings_to_move}")
+            record_of_recursion_calls.append(f"FIRST: num_rings_to_move = {num_rings_to_move}; pegs = {pegs};  Peg order in func = from_peg={from_peg}; to_peg={use_peg}; use_peg={to_peg}; RESULT = {result}")
             
             compute_tower_hanoi_steps(num_rings_to_move - 1, from_peg, use_peg,
                                       to_peg)
+            #### MOVE OCCURS HERE!!!
             pegs[to_peg].append(pegs[from_peg].pop())
             result.append([from_peg, to_peg])
             
             print(f"\n\n\n#####\n#####\n#####\nStarting SECOND internal call to recursion")
-            print(f"\npegs = {pegs}")
-            print(f"\nNum rings to move = {num_rings_to_move}")
-            print(f"\nfrom_peg = {from_peg}; to_peg = {to_peg}; use_peg = {use_peg}")
-            record_of_recursion_calls.append(f"SECOND: {num_rings_to_move}; pegs = {pegs};  Peg order in func = {use_peg}; {to_peg}; {from_peg}")
+            record_of_recursion_calls.append(f"SECOND: num_rings_to_move = {num_rings_to_move}; pegs = {pegs};  Peg order in func = from_peg={use_peg}; to_peg={to_peg}; use_peg{from_peg}; RESULT = {result}")
+            SECOND_FUNC_COUNTER+= 1
+            print(f"SECOND_FUNC_COUNTER = {SECOND_FUNC_COUNTER}")
 
             compute_tower_hanoi_steps(num_rings_to_move - 1, use_peg, to_peg,
                                       from_peg)
-
+                                      
+        else:
+            record_of_recursion_calls.append("                    ********** num_rings_to_move == 0")
+            IF_ZERO_TRUE_COUNTER += 1
+            print(f"\n\nIF_ZERO_TRUE_COUNTER = {IF_ZERO_TRUE_COUNTER}")
+            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+            pass
+            
     # Initialize pegs.
     result: List[List[int]] = []
     pegs = [list(reversed(range(1, num_rings + 1)))
             ] + [[] for _ in range(1, NUM_PEGS)]
     compute_tower_hanoi_steps(num_rings, 0, 1, 2)
-    print(f"\nNumber of recursion calls =")
-    pprint.pp(record_of_recursion_calls)
+    print(f"\n\n***** Summary of process ***** ")
+    for x in record_of_recursion_calls:
+        print(x)
     print(f"\nresult = {result}")
     return result
 
 
 if __name__ == "__main__":
-    compute_tower_hanoi(3)
+    compute_tower_hanoi(1)
 
 exit()
 @enable_executor_hook

@@ -1,22 +1,14 @@
+
 """
-TRICK: ONLY REACHES THE SECOND CALL OF HELPER FUNCTION IF "num_rings_to_move == 0" ... I.E.SKIPS THE MAIN BLOCKOF CODE ENTIRELY.
-    BECAUSE IT'S ENCLOSED IN RECURSIVE FUNCS, WHEN REVERT TO OUTER FUNC, IT REVERTS TO LARGER NUMBER AGAIN.
-INPUT TO HELPER FUNC = "from_peg, to_peg, use_peg" 
-    ...BUT IN FIRST RECURSION IT'S "from_peg, use_peg, to_peg" ...I.E.JUST 2ND & 3RD CHANGE.
-    ...BUT IN SECOND RECURSION IT'S "use_peg, to_peg, from_peg" ... I.E. FIRST ONE CHANGES.
-ANYTIME YOU EXIT THE "FIRST" RECURSION, A MOVE OCCURS.
+TRICK #1: 
+BASE CASE = IF "num_rings_to_move == 0" ...
 
-To move N disks,
-
+TRICK #2: 
+To move N disks THERE ARE 3 STEPS:
 1. First you move N-1 disks to the intermediate position,
-2. Then you move the bottom disk to the destination,
+2. Then you move the BOTTOM disk to the DESTINATION,
 3. Finally you move the N-1 disks from the intermediate position to the destination.
-The code mimics that.
-
-The only thing to understand is that the "roles" of source, destination and temporary are different for the sub-towers.
--- When I say "move N-1 from source to temp", it means source2 = source, dest2 = temp, and as a consequence temp2 = dest.
--- When you move the bottom disk, all is unchanged ( source3 = source, dest3 = dest, temp3 = temp
--- When I say "move N-1 from temp to dest", it means source4 = temp, dest4 = dest, and as a consequence temp4 = source.
+The code does exactly that.
 """
 
 import functools

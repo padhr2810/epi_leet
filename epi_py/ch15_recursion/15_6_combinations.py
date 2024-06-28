@@ -52,7 +52,7 @@ def combinations(n: int, k: int) -> List[List[int]]:
     directed_combinations(1, [])
     return result
 
-
+###################################### EPI - ITERATIVE APPROACH.
 def combinations_pythonic(n, k):
     result = [[]]
     for _ in range(k):

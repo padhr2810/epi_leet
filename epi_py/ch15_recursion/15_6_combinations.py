@@ -1,6 +1,7 @@
 
 
 ############################ GEEKS FOR GEEKS: - https://www.geeksforgeeks.org/combinations-in-python-without-using-itertools/
+# RECURSIVE.
 
 # Function to create combinations 
 # without itertools
@@ -28,7 +29,7 @@ if __name__=="__main__":
 
 
 
-############################ EPI
+############################ EPI - RECURSIVE.
 from typing import List
 
 from test_framework import generic_test, test_utils

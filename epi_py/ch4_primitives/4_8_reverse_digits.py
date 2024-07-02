@@ -1,3 +1,6 @@
+"""
+TRICK: PUT LAST DIGIT AT THE START. AND AT THE NEXT ITERATION, SHIFT IT BACK 1 PLACE USING *10
+"""
 
 def reverse(x: int) -> int:
     print(f"\n\n#################################################################################################")

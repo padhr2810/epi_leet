@@ -1,3 +1,10 @@
+"""
+TRICK #1: FOR 10 ** 21, DON'T NEED TO MULTIPLY 21 TIMES. INSTEAD, CAN MULTIPLY 10 TIMES BY ** 2.
+OR 5 TIMES BY ** 4.
+TRICK #2: GENERAL RULE, IF LSB OF Y = 0, THE RESULT IS (X ** (Y/2)) ** 2
+.... OTHERWISE IT IS: (X * (X ** Y/2) ** 2 )  ..... I.E. EXTRA 'X' TO ACCOUNT FOR THE ONE AT THE END.
+TRICK #3: ACCOUNT FOR NEGATIVE POWER. SIMPLY FLIP THE SIGN OF POWER, AND USE RECIPROCAL OF 'X' INSTEAD OF 'X'.
+"""
 
 def power(x: float, y: int) -> float:
     print(f"\n\n##################################################################")

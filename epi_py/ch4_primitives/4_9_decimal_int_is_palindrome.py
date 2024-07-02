@@ -1,4 +1,14 @@
-
+"""
+TRICK #1:  LSD = X % 10
+TRICK #2:  MSD = X // (10 ** (N-1)) 
+TRICK #3:  NUM DIGITS = "math.floor(math.log10(x)) +1  "
+TRICK #4:  ITERATE OVER "range(num_digits // 2)"
+TRICK #5:  REMOVE THE MSD:
+           "x %= msd_mask"
+           I.E. WHERE "msd_mask" = "10** (num_digits -1)
+TRICK #6: THE NUMBER LOSES 2 DIGITS EACH TIME, SO NEED TO ADJUST THE "msd_mask" EACH ITERATION OBVIOUSLY. SIMPLY DO THIS BY "msd_madk //= 100"
+           
+"""
 
 import math
 

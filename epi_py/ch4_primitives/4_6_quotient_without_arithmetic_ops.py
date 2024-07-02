@@ -1,4 +1,10 @@
+"""
+TRICK 1: QUOTIENT IS MORE PERMISSIVE THAN 4_5_PRODUCT COZ WE CAN USE "-=" AND "+="
+TRICK 2: START AT MASSIVE POWER E.G. 32, IF IT'S LESS THAN X, ADD THE MULTIPLIER TO THE ANSWER '+='
+I.E. ADD THIS TO THE ANSWER: ( 1 << POWER )
+TRICK 3: KEEP WORKING BACKWARDS FROM THE BIGGER POWER TO THE SMALLER, AND DO THE SAME CHECK FOR EACH ONE.
 
+"""
 
 def divide(x: int, y: int) -> int:
     print(f"\n\n##########################################################################################")

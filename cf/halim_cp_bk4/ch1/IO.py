@@ -1,5 +1,9 @@
 # comment all lines and only uncomment demo code that you are interested with
 
+# Input() 	vs    sys.stdin.readline()
+# Input()  -- The input takes input from the user but does not read escape character. 	
+# sys.stdin.readline()  --  The readline() also takes input from the user but also reads the escape character.
+
 # IO_in1.txt
 import sys
 inputs = iter(sys.stdin.readlines())
